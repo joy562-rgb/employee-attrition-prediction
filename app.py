@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load trained model (with preprocessing pipeline)
 MODEL_PATH = "models/attrition_model.pkl"
 model = joblib.load(MODEL_PATH)
 
 st.title("🏢 Employee Attrition Prediction App")
 
-# Input form
+
 st.subheader("Enter Employee Information:")
 
 data = {
@@ -48,12 +47,11 @@ data = {
     "YearsSinceLastPromotion": st.number_input("Years Since Last Promotion", min_value=0, max_value=20, value=2),
     "YearsWithCurrManager": st.number_input("Years With Current Manager", min_value=0, max_value=20, value=3),
 
-    # ✅ Add missing columns required by the model (likely constant)
     "StandardHours": 80,
     "EmployeeCount": 1,
 }
 
-# Predict button
+
 if st.button("Predict Attrition"):
     df = pd.DataFrame([data])
 
